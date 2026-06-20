@@ -12,10 +12,10 @@ Drop file into ingest/ → auto-converted + metadata fetched → Calibre library
 ## Quick Start (local testing)
 
 ```bash
-cp .env.example .env          # set PUID/PGID and ADMIN_PASSWORD
+cp .env.example .env          # set PUID/PGID
 mkdir -p config library ingest
 docker compose up -d
-uv run python setup_cwa.py    # change default password, enable Kobo sync
+uv run python setup_cwa.py --rotate-password   # set strong password + enable Kobo sync
 ```
 
 Open http://localhost:8083
@@ -47,7 +47,7 @@ Beta Features sync menu is absent on firmware 4.39+ — USB config patch is requ
 | `docker-compose.yml` | Base config (local testing) |
 | `docker-compose.nas.yml` | NAS overrides — polling watcher, network share mode, NAS volume paths |
 | `.env.example` | Environment variable template |
-| `setup_cwa.py` | First-run hardening: password change + Kobo sync enable (Playwright) |
+| `setup_cwa.py` | Admin password management + Kobo sync enable via Playwright (`--rotate-password` / `--update-password`) |
 | `kobo_set_server.py` | Patches Kobo eReader.conf via USB to point at CWA sync server |
 | `make_test_pdf.py` | Generates a valid test PDF for ingest/conversion testing |
 | `NAS_SETUP.md` | Full NAS deployment guide (Synology DS918+, DSM 7, Btrfs) |
