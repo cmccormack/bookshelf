@@ -1,0 +1,10 @@
+# CWA Wiki Kobo Sync Page - FAILED
+
+SOURCE: https://raw.githubusercontent.com/wiki/crocodilestick/Calibre-Web-Automated/Kobo-Sync.md
+STATUS: HTTP 404 Not Found
+
+NOTE: The wiki page at this path does not exist. The actual Kobo wiki page is at:
+https://github.com/crocodilestick/Calibre-Web-Automated/wiki/Kobo-Integration-&-Sync
+
+Content from the correct URL is captured in the research file.
+FETCHED: 2026-06-19

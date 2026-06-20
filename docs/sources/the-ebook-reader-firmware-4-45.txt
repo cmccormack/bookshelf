@@ -1,0 +1,15 @@
+Source URL: https://blog.the-ebook-reader.com/2026/02/26/software-update-4-45-released-for-latest-kobo-ereaders/
+Fetched: 2026-06-19
+
+Firmware 4.45.23640 official changelog (Kobo Libra Colour, Clara Colour, Clara BW):
+- Various bug fixes
+- Stability improvements
+
+Beta tester notes:
+- Ensures updates install properly on revised device models with different internal components
+- Translation fixes
+
+No changes to beta features, sync server settings, or API endpoint reported.
+
+Note: A separate firmware 4.38.23429 (not in 4.39-4.45 range) was pulled after causing
+boot loops on older devices; it replaced Pocket with Instapaper.

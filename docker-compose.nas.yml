@@ -1,0 +1,21 @@
+# NAS deployment overrides
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.nas.yml up -d
+#
+# Note: Synology uses docker-compose v1 (/usr/local/bin/docker-compose), not the
+# docker compose v2 plugin. Use the hyphenated form on NAS.
+#
+# Btrfs gotcha: the calibre shared folder must be created via synoshare, not mkdir.
+# See NAS_SETUP.md for full instructions.
+
+services:
+  calibre-web-automated:
+    environment:
+      # Switches ingest watcher from inotify to polling
+      # Required on Synology — inotify is unavailable over network shares
+      - WATCH_METHOD=polling
+      # Disables SQLite WAL mode — prevents lock errors on Btrfs network shares
+      - NETWORK_SHARE_MODE=true
+    volumes:
+      - /volume1/docker/cwa-library/config:/config
+      - /volume1/calibre/library:/calibre-library
+      - /volume1/calibre/ingest:/cwa-book-ingest

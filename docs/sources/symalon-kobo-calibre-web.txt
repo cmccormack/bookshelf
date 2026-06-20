@@ -1,0 +1,29 @@
+Source URL: https://symalon.com/en/synchronize-kobo-ereader-with-calibre-web/
+
+## Config File Location
+
+Connect Kobo via USB. Navigate to: .kobo/Kobo/Kobo eReader.conf
+
+## Sync Token
+
+In Calibre-Web: click username > "Display / Create Kobo Sync Token"
+
+## Configuration
+
+Find the [OneStoreServices] section and insert the authentication token:
+api_endpoint=https://my.server.com/calibre/kobo/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+## Important Technical Gotchas
+
+API Port Configuration:
+- The port for the API in the Calibre Web Admin interface must be adjusted from 8084 to 80. Otherwise the Kobo eReader will return synchronization errors.
+
+Nginx Buffer Settings (if using Nginx Proxy Manager):
+- proxy_buffer_size 128k;
+- proxy_buffers 4 256k;
+- proxy_busy_buffers_size 256k;
+
+Selective Synchronization:
+- Not all books are automatically synchronized — users must create bookshelves and enable "Synchronize this bookshelf with Kobo" option.
+
+No mention of Beta Features menu or specific firmware requirements.

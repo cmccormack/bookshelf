@@ -1,0 +1,23 @@
+.env
+
+# Local volume data — not committed
+config/
+library/
+ingest/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Test artifacts
+screenshots/
+
+# Claude Code — logs, research, local settings (skills/commands may be added later)
+.claude/logs/
+.claude/research/
+.claude/settings.local.json
+
+# macOS
+.DS_Store

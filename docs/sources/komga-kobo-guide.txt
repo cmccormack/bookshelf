@@ -1,0 +1,25 @@
+Source URL: https://komga.org/docs/guides/kobo/
+
+## File Location and Access
+
+Connect Kobo to a computer. Locate: .kobo/Kobo/Kobo eReader.conf
+(May need to display hidden files on Mac/Linux)
+
+## Configuration Edit
+
+Find or create this line under the [OneStoreServices] section:
+
+Original: api_endpoint=https://storeapi.kobo.com
+Replace with: api_endpoint=https://<your_address>/kobo/<api_key>
+
+Example formats:
+- External: https://demo.komga.org/kobo/ABC123456123ABCD
+- Local: http://192.168.1.54:25600/kobo/ABC123456123ABCD
+
+## Important Notes
+
+- No Beta Features menu mentioned
+- No firmware version requirements noted
+- HTTPS strongly recommended for security
+- API key should be treated as sensitive as a password
+- No information on whether settings persist after reboots or updates

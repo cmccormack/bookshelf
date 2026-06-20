@@ -1,0 +1,27 @@
+# Calibre-Web Wiki Kobo Sync Feature - FAILED
+
+SOURCE: https://github.com/janeczku/calibre-web/wiki/Kobo-Sync-Feature
+STATUS: Page returned wiki edit interface, not wiki content (possible redirect/auth issue)
+
+KEY INFO FROM SEARCH RESULTS:
+
+## Admin Configuration
+- Admin → Edit Basic Configuration → Feature Configuration
+- Enable "Enable Kobo sync"
+- Enable "Proxy unknown requests to Kobo Store"
+- Verify Server External Port = 8083
+
+## Token Generation
+- Settings > Edit Users > Edit User > OAuth & API Integrations > Kobo Sync Token (Create/View)
+- Access CWA from non-localhost address to get a valid endpoint for the Kobo device
+
+## Kobo Device Config
+Edit `.kobo/Kobo/Kobo eReader.conf`:
+[OneStoreServices]
+api_endpoint=https://your-calibre-instance.domain.com/kobo/<sync-token>
+
+## Limitations
+- Only EPUB formatted books can be synchronised
+- Local IP address more reliable than external URL / reverse proxy
+
+FETCHED: 2026-06-19

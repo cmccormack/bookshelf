@@ -1,0 +1,25 @@
+Source URL: https://code.mendhak.com/kobo-customizations/
+
+## File Location and Edit Instructions
+
+To configure a custom API endpoint for Calibre Web syncing, locate this configuration file on your mounted Kobo device:
+
+File path: .kobo/Kobo/Kobo eReader.conf
+
+## Configuration Steps
+
+1. Connect your Kobo to a computer via USB
+2. Navigate to the hidden .kobo directory (you may need to enable viewing hidden files)
+3. Open the Kobo/Kobo eReader.conf file with a text editor
+4. Find this existing line:
+   api_endpoint=https://storeapi.kobo.com
+5. Replace it with your Calibre Web endpoint value (obtained from Calibre Web's Kobo Sync Token):
+   api_endpoint=https://example.com/kobo/xxxxxxxxxxxxxxxx
+6. Save and close the file
+7. Unmount the Kobo from your computer
+8. On the Kobo home screen, use the sync icon (top right) to initiate synchronization with your custom server
+
+## Additional Notes
+
+- The document does not mention firmware version requirements or alternative methods beyond this direct file editing approach.
+- No Beta Features menu configuration is discussed.

@@ -1,0 +1,8 @@
+Source URL: https://ewritable.net/brands/kobo/firmware/4-44/
+Fetched: 2026-06-19
+
+Firmware 4.44 official changelog (Kobo Libra Colour, Clara Colour, Clara BW):
+1. Added support for Kobo Remote (page-turning peripheral)
+2. Added Bluetooth toggle button to the top status bar
+
+No changes to beta features, sync settings, api_endpoint, or OneStoreServices.

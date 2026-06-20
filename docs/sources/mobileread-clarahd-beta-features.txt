@@ -1,0 +1,13 @@
+Source URL: https://www.mobileread.com/forums/showthread.php?t=354808
+
+## Kobo Clara HD Missing Beta Features
+
+Device: Kobo Clara HD, firmware 4.37.21533
+
+Problem: Beta Features not visible in Settings menu.
+
+Root cause found: Parental mode was enabled — enabling parental mode hides the Beta Features submenu.
+
+Solution: Disable parental mode to restore access to Beta Features.
+
+Additional access method: Type "devmodeon" in the Kobo search bar (magnifying glass icon, top right) to enable developer mode, which shows additional options in Settings.

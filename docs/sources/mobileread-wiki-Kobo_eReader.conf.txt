@@ -1,0 +1,3 @@
+Source URL: https://wiki.mobileread.com/wiki/Kobo_eReader.conf
+Fetch status: 404 - Page exists but has no content ("There is currently no text in this page.")
+Fetched: 2026-06-19

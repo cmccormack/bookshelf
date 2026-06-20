@@ -1,0 +1,24 @@
+Source URL: https://goodereader.com/blog/electronic-readers/how-to-access-the-secret-kobo-developer-options
+
+## Developer Mode Access
+
+Method: Type "devmodeon" in the Kobo search bar (tap magnifying glass icon, top right of home screen).
+- No confirmation notification when it activates.
+- Applies to "most" Kobo e-readers (article does not specify models or firmware range).
+
+## Features Unlocked
+
+Beta Features menu gains:
+- Games: Sudoku, Unblock It, Solitaire (6 variants), Word Scramble
+- Kobo Sketchpad app
+
+Settings and Device Information gains:
+- Force WiFi on permanently
+- Adjust frontlight/color temperature via RGB/white sliders
+- Invert screen (system-wide dark mode)
+- Disable double-tap zoom, dithering, E INK Regal refresh
+- Set orientation (landscape/portrait)
+- Modify z-lock angle threshold
+
+Note: No mention of custom sync server settings accessible via this method.
+No firmware version specifics provided.

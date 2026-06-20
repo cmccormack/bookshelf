@@ -1,0 +1,15 @@
+services:
+  calibre-web-automated:
+    image: ghcr.io/crocodilestick/calibre-web-automated:latest
+    container_name: cwa-library
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-America/Phoenix}
+    volumes:
+      - ./config:/config              # CWA config + app database
+      - ./library:/calibre-library    # Calibre library (books + metadata.db)
+      - ./ingest:/cwa-book-ingest     # Drop books here — auto-processed and removed
+    ports:
+      - ${PORT:-8083}:8083
+    restart: unless-stopped

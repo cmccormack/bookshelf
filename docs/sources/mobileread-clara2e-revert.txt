@@ -1,0 +1,9 @@
+Source URL: https://www.mobileread.com/forums/showthread.php?t=357598
+
+## Clara 2E api_endpoint Reversion Issue
+
+Problem: Custom api_endpoint kept reverting to Kobo default after syncing, despite manually editing .kobo/Kobo/Kobo eReader.conf.
+
+Solution reported: Performing a full hardware reset (hold power button while plugged into power until full reset executes) caused the setting to stick. A software factory reset alone did not fix it.
+
+Note: The user attributed this to "just a weird bug." No explanation of underlying cause. No permanent configuration method discussed beyond the full hardware reset workaround.
