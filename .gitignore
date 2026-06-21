@@ -14,9 +14,10 @@ __pycache__/
 # Test artifacts
 screenshots/
 
-# Claude Code — logs, research, local settings (skills/commands may be added later)
+# Claude Code — session artifacts; skills/commands in .claude/ may be added later
 .claude/logs/
 .claude/research/
+.claude/tasks/
 .claude/settings.local.json
 
 # macOS

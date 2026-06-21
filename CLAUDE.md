@@ -76,7 +76,7 @@ sudo chown -R <user>:users /volume1/calibre/library/
 ```
 
 ## Tooling (Python, managed with uv)
-- `setup_cwa.py` — first-run CWA hardening via Playwright (`--host` arg for NAS)
+- `setup_cwa.py` — password management + Kobo sync enable via Playwright (`--rotate-password`, `--update-password`, `--host` for NAS)
 - `kobo_set_server.py` — patches Kobo eReader.conf via USB
 - `make_test_pdf.py` — generates a valid test PDF for ingest testing
 
@@ -85,14 +85,3 @@ Mobile upload UI with epub.js preview and conversion options.
 Will share the same ingest folder — files dropped there get picked up by CWA automatically.
 No changes to Phase 1 required.
 
-## Success Criteria
-### Local test ✅
-1. Container starts clean, UI accessible at http://localhost:8083
-2. Drop an EPUB into ./ingest/ — appears in library within seconds
-3. Drop a PDF into ./ingest/ — auto-converted and appears in library
-4. Kobo can connect and sync
-
-### NAS deploy ✅
-1. All of the above at http://<nas-ip>:8083
-2. Ingest folder accessible via File Station (calibre → ingest)
-3. Kobo syncs reliably over LAN (travel router testing pending)
