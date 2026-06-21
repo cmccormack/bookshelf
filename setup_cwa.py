@@ -1,8 +1,10 @@
 import argparse
 import os
+import re
 import secrets
 import string
 import sys
+from pathlib import Path
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright
 
@@ -21,38 +23,67 @@ def generate_password(length=32):
     return "".join(pool)
 
 
+def update_env_file(env_file: str, new_password: str) -> None:
+    path = Path(env_file)
+    if not path.exists():
+        return
+    text = path.read_text()
+    text = re.sub(r"^ADMIN_PASSWORD=.*$", f"ADMIN_PASSWORD='{new_password}'", text, flags=re.MULTILINE)
+    text = re.sub(r"^ADMIN_REFRESH_PASSWORD=.*$", "ADMIN_REFRESH_PASSWORD=", text, flags=re.MULTILINE)
+    path.write_text(text)
+
+
+def confirm(prompt: str, auto_yes: bool) -> bool:
+    if auto_yes:
+        print(f"{prompt} [auto-yes]")
+        return True
+    return input(f"{prompt} [y/N] ").strip().lower() == "y"
+
+
 parser = argparse.ArgumentParser(description="CWA admin hardening and password management.")
 parser.add_argument("--host", default="localhost", help="CWA host (default: localhost)")
 parser.add_argument("--port", default="8083", help="CWA port (default: 8083)")
 parser.add_argument("--env-file", default=".env", help="Path to .env file (default: .env)")
 parser.add_argument(
-    "--password", metavar="PASSWORD",
-    help="Current admin password — overrides ADMIN_PASSWORD env var (default: admin123)",
+    "--password", metavar="PASSWORD", default="admin123",
+    help="Current admin password (default: admin123)",
+)
+parser.add_argument(
+    "--yes", "-y", action="store_true",
+    help="Skip all confirmation prompts and proceed automatically",
 )
 
 group = parser.add_mutually_exclusive_group(required=True)
 group.add_argument(
-    "--update-password", metavar="PASSWORD",
-    help="Set admin password to this value",
+    "--update-password", nargs="?", const=None, metavar="PASSWORD",
+    help="Set admin password to PASSWORD, or to ADMIN_PASSWORD from .env if no value given",
 )
 group.add_argument(
     "--rotate-password", action="store_true",
-    help="Generate a new strong random password, print it, then set it",
+    help=(
+        "Rotate admin password: reads current from ADMIN_PASSWORD, "
+        "new from ADMIN_REFRESH_PASSWORD (or generates one), then optionally updates .env"
+    ),
 )
 args = parser.parse_args()
 
 load_dotenv(args.env_file)
 
-# Current password: --password > ADMIN_PASSWORD env var > CWA factory default
-OLD_PASS = args.password or os.environ.get("ADMIN_PASSWORD") or "admin123"
+OLD_PASS = args.password
 
 if args.rotate_password:
-    NEW_PASS = generate_password()
-    print(f"\nGenerated password: {NEW_PASS}")
-    print("Save this in your password manager before continuing.")
-    input("\nPress Enter to proceed...")
+    if OLD_PASS == "admin123":
+        OLD_PASS = os.environ.get("ADMIN_PASSWORD") or "admin123"
+    NEW_PASS = os.environ.get("ADMIN_REFRESH_PASSWORD") or generate_password()
+    print(f"\nNew password: {NEW_PASS}")
+    if not os.environ.get("ADMIN_REFRESH_PASSWORD"):
+        print("Save this in your password manager.")
+    if not args.yes:
+        input("\nPress Enter to proceed...")
 else:
-    NEW_PASS = args.update_password
+    NEW_PASS = args.update_password or os.environ.get("ADMIN_PASSWORD")
+    if not NEW_PASS:
+        sys.exit("Error: --update-password requires a value or ADMIN_PASSWORD set in .env")
 
 BASE = f"http://{args.host}:{args.port}"
 
@@ -60,7 +91,7 @@ with sync_playwright() as p:
     browser = p.chromium.launch()
     page = browser.new_page()
 
-    print(f"Logging in to {BASE}...")
+    print(f"\nLogging in to {BASE}...")
     page.goto(f"{BASE}/login")
     page.fill("#username", "admin")
     page.fill("#password", OLD_PASS)
@@ -71,7 +102,6 @@ with sync_playwright() as p:
     print("Changing password...")
     page.goto(f"{BASE}/admin/user/1")
     page.wait_for_load_state("networkidle")
-    # Dismiss any active notification modal before interacting with the form
     modal = page.locator("#duplicate-notification-modal.active")
     if modal.is_visible():
         modal.locator("button").first.click()
@@ -100,4 +130,10 @@ with sync_playwright() as p:
     print("  (token visible per-user under Account Settings after login)")
 
     browser.close()
-    print("\nSetup complete.")
+
+if args.rotate_password:
+    if confirm(f"\nUpdate {args.env_file} with new password?", args.yes):
+        update_env_file(args.env_file, NEW_PASS)
+        print(f"Updated: ADMIN_PASSWORD set to new value, ADMIN_REFRESH_PASSWORD cleared.")
+
+print("\nSetup complete.")
