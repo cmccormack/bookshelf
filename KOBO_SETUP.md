@@ -1,4 +1,5 @@
 # Kobo Setup
+[View on GitHub](https://github.com/cmccormack/bookshelf/blob/main/KOBO_SETUP.md)
 
 Connect your Kobo to Calibre-Web Automated for wireless book sync.
 

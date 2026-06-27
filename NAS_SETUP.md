@@ -1,6 +1,9 @@
 # NAS Setup Guide
+[View on GitHub](https://github.com/cmccormack/bookshelf/blob/main/NAS_SETUP.md)
 
 Deploying CWA on a Synology DS918+ (DSM 7.1.1, Btrfs volume).
+
+> For Synology DS918+ platform docs (SSH hardening, Docker administration, DSM configuration, security), see [MackNet NAS Docs](https://github.com/cmccormack/macknet/tree/main/docs/synology/).
 
 ## Prerequisites
 
@@ -15,7 +18,6 @@ Deploying CWA on a Synology DS918+ (DSM 7.1.1, Btrfs volume).
 | Docker binary | `/usr/local/bin/docker` (not in default SSH PATH — use full path) |
 | docker-compose | v1 at `/usr/local/bin/docker-compose` — use `docker-compose`, not `docker compose` |
 | git binary | `/var/packages/git/target/bin/git` (not in PATH) |
-| DSM web UI | Port 5000 (HTTP) / 5001 (HTTPS) |
 | PUID/PGID | Get from `id $(whoami)` on the NAS |
 
 ## Step 1: Clone the repo
@@ -37,6 +39,7 @@ PORT=8083
 ADMIN_USER=admin
 ADMIN_PASSWORD='<strong-password>'
 EOF
+chmod 600 /volume1/docker/cwa-library/bookshelf/.env
 ```
 
 Get your PUID/PGID with `id $(whoami)` on the NAS.

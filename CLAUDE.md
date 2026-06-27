@@ -1,4 +1,5 @@
 # cwa-library
+[View on GitHub](https://github.com/cmccormack/bookshelf/blob/main/CLAUDE.md)
 
 ## Project Overview
 Self-hosted ebook library using Calibre-Web Automated (CWA) on a Synology DS918+ NAS.
@@ -19,6 +20,7 @@ github.com/<your-username>/bookshelf
 - Networking: UDM Pro at home, UniFi travel router on the road
 - Docker: docker-compose v1 (`/usr/local/bin/docker-compose`) — NOT v2 plugin
 - SSH: `<user>@<nas-ip>`, public key auth
+- Platform docs (SSH, Docker admin, DSM config, security): [MackNet NAS Docs](https://github.com/cmccormack/macknet/tree/main/docs/synology/)
 
 ## Architecture (Phase 1 — current)
 Single CWA container. No custom code. No Flask. No Redis.

@@ -1,4 +1,5 @@
 # cwa-library
+[View on GitHub](https://github.com/cmccormack/bookshelf/blob/main/README.md)
 
 Self-hosted ebook library using [Calibre-Web Automated](https://github.com/crocodilestick/Calibre-Web-Automated).
 Kobo e-reader syncs wirelessly via CWA's native Kobo sync protocol.
@@ -22,7 +23,7 @@ Open http://localhost:8083
 
 ## NAS Deployment
 
-See **[NAS_SETUP.md](NAS_SETUP.md)** for the full guide. Key differences from local:
+See **[NAS_SETUP.md](NAS_SETUP.md)** for the full CWA deployment guide. For Synology platform docs (SSH, Docker, DSM administration, security hardening) see the [MackNet NAS Docs](https://github.com/cmccormack/macknet/tree/main/docs/synology/). Key differences from local:
 
 - Docker binary is at `/usr/local/bin/docker` (not in SSH PATH)
 - Uses `docker-compose` v1, not `docker compose` v2

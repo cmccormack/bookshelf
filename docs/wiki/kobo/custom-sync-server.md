@@ -1,6 +1,6 @@
 # Custom Sync Server Configuration (no Beta Features menu)
 
-[View on GitHub](https://github.com/[your-username]/cwa-library/blob/main/docs/wiki/kobo/custom-sync-server.md)
+[View on GitHub](https://github.com/cmccormack/bookshelf/blob/main/docs/wiki/kobo/custom-sync-server.md)
 
 Kobo devices on firmware 4.39+ (including the Libra Colour on 4.45) may not show a
 Beta Features menu in Settings — it can be hidden by parental mode or absent on some
